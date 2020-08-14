@@ -49,7 +49,7 @@
 			height: 200px;
 			line-height: 200px;
 		}
-		@media only screen and (max-width: 600px) {
+		@media only screen and (max-width: 480px) {
 			body {
 				margin: 0;
 			}
@@ -86,7 +86,7 @@
 				height: 60px;
 				font-size: 2em;
 				line-height: 60px;
-				background-color: #BFBFBF;
+				background-color: #fff;
 				color: #000;
 				margin: 5px 0 0;
 			}
@@ -98,7 +98,7 @@
 	</style>
 </head>
 
-<body>
+<body onresize="sortTiles()">
 	<header class="head"> Shuffle and Sort</header>
 	<div class="container">
 		<div class="buttonHolder">
