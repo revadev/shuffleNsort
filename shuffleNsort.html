@@ -10,54 +10,109 @@
 			color: #fff;
 			padding: 10px 15px;
 			background-color: #72C3DC;
+			margin: 10px 0;
+			width: 90%;
+		}
+
+		.container {
+			width: 100%;
+			background: #f7f7f7;
+			display: flex;
+			flex-direction: row-reverse;
 		}
 
 		button:focus {
 			outline: none;
-			box-shadow: 10px 20px;
+			box-shadow: 3px 4px;
+		}
+
+		.buttonHolder {
+			display: inline-block;
 		}
 
 		.cardHolder {
 			margin: 10px 15px;
-			width: 300px;
 			opacity: 0.85;
-		}
-
-		.container .cardHolder div {
-			height: 20px;
-			width: 200px;
-			text-align: center;
-			margin-bottom: 2px;
-			background-color: #cccccc54;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+			width: 80%;
 		}
 
 		.container .cardHolder .box {
-			height: 100px;
 			text-align: center;
 			display: inline-block;
-			width: 30%;
 			margin: 0;
 			color: #fff;
-			font-size: 2em;
+			font-size: 8em;
+			flex: 0 0 33.33%;
+			height: 200px;
+			line-height: 200px;
+		}
+		@media only screen and (max-width: 600px) {
+			body {
+				margin: 0;
+			}
+			.head {
+				color: #fff;
+				text-align: center;
+				font-size: 2em;
+				background-color: #2F454E;
+				line-height: 50px;
+			}
+			.container {
+				display: block;
+				flex-direction: row;
+			}
+			.buttonHolder {
+				display: block;
+				max-width: 204px;
+				margin: 0 auto;
+			}
+			button {
+				margin: 10px 0;
+    			width: 49%;
+			}
+			button:hover{
+				cursor: pointer;
+			}
+			.cardHolder {
+				display: block;
+				width: 80%;
+				margin: 0 auto;
+			}
+			.container .cardHolder .box {
+				width: 100%;
+				height: 60px;
+				font-size: 2em;
+				line-height: 60px;
+				background-color: #BFBFBF;
+				color: #000;
+				margin: 5px 0 0;
+			}
+			.credits {
+				text-align: center;
+				padding: 10px 0 0;
+			}
 		}
 	</style>
 </head>
 
 <body>
+	<header class="head"> Shuffle and Sort</header>
 	<div class="container">
-		<header class="head"> Shuffle and Sort</header>
+		<div class="buttonHolder">
+			<button onclick="shuffleTiles()">SHUFFLE</button>
+			<button onclick="sortTiles()">SORT</button>
+		</div>
 		<div class="cardHolder">
 		</div>
-		<div class="buttonHolder">
-			<button onclick="sortTiles()">SORT</button>
-			<button onclick="shuffleTiles()">SHUFFLE</button>
-		</div>
-		<div class="credits"> Shuffle and Sort by Reva Arora</div>
 	</div>
+	<div class="credits"> Shuffle and Sort by Reva Arora</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
 		let getDevice = () => {
-			return window.screen.width <=375 ? "small" : "big";
+			return window.innerWidth <=425 ? "small" : "big";
 		}
 		let shuffle = (array) => {
 			for (let i = array.length - 1; i > 0; i--) {
@@ -69,7 +124,7 @@
 			$(".cardHolder").html("");
 			if (device === "small") {
 				for (let i = 0; i < order.length; i++) {
-					$(".cardHolder").append('<div style="border-left:' + colorCodes[order[i] - 1] + ' 5px solid">' + order[i] + '</div>')
+					$(".cardHolder").append('<div class ="box" style="border-left:' + colorCodes[order[i] - 1] + ' 5px solid">' + order[i] + '</div>')
 				}
 			} else {
 				for (let i = 0; i < order.length; i++) {
